@@ -6,7 +6,7 @@ package org.example;
         private String empNumber;
         private String empName;
         private String empSurname;
-        private String Address;
+        private String address;
         private String job;
         private String email;
 
@@ -19,23 +19,46 @@ package org.example;
         public String getEmpSurname(){
             return empSurname;
         }
-
-        public void setEmpNumber(String empNumber) {
-            this.empNumber = empNumber;
-        }
-        public void setEmpName(String empName){
-            this.empName = empName;
-        }
-        public void setEmpSurname(String empSurname){
-            this.empSurname = empSurname;
+        public String getAddress(){
+            return address;
         }
 
-        @Override
-        public String toString() {
-            return "Employee"
-                    + "\nID: " + empNumber
-                    + "\nName: " + empName
-                    + "\nSurname: " + empSurname;
+
+        private Employee (Builder builder) {
+
         }
+
+        public static class Builder {
+            private String empNumber;
+            private String empName;
+            private String empSurname;
+            private String address;
+            private String job;
+            private String email;
+
+            public void setEmpNumber(String empNumber) {
+                this.empNumber = empNumber;
+            }
+            public void setEmpName(String empName){
+                this.empName = empName;
+            }
+            public void setEmpSurname(String empSurname){
+                this.empSurname = empSurname;
+            }
+            public Builder copy(Employee employee){
+                this.empNumber = empNumber;
+                this.empName = empName;
+                this.empSurname = empSurname;
+                this.address = address;
+                this.job = job;
+                this.email = email;
+                return this;
+            }
+            public Employee build(){
+                return new Employee(this);
+            }
+        }
+
+
     }
 
